@@ -1,0 +1,59 @@
+/* Layout for support page */
+.support-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.muted { color: #64748b; }
+.small { font-size: 0.9rem; }
+
+/* Contact + quick actions */
+.support-contact { list-style: none; padding-left: 0; }
+.support-contact li { margin: 0.4rem 0; }
+.quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem; }
+
+/* Tabs */
+.support-tabs { display: flex; gap: 0.5rem; padding: 0.75rem; border-bottom: 1px solid #e2e8f0; }
+.tab-btn {
+  background: transparent; border: none; padding: 0.6rem 0.9rem; border-radius: 8px;
+  color: #64748b; font-weight: 600; cursor: pointer;
+}
+.tab-btn.active { color: #4F8EF7; background: rgba(79,142,247,0.12); }
+.tab-pane { display: none; padding: 1rem; }
+.tab-pane.active { display: block; }
+
+/* Chat */
+.chat-window {
+  height: 320px; overflow: auto; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px;
+}
+.chat-input { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+.chat-msg {
+  max-width: 78%; padding: 10px 12px; border-radius: 12px; border: 1px solid #e2e8f0; margin: 6px 0;
+}
+.chat-msg.user { margin-left: auto; background: #eff6ff; }
+.chat-msg.bot { background: #f8fafc; }
+
+/* Two-column form helper */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+textarea { min-height: 90px; }
+
+/* Tickets / appointments list */
+.tickets-list { display: grid; gap: 0.75rem; }
+.ticket {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px;
+}
+.ticket h4 { margin: 0 0 6px; color: #1e293b; font-size: 1rem; }
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.8rem; margin-left: 6px;
+  background: #eef2ff; color: #3730a3; border: 1px solid #e0e7ff;
+}
+
+/* Scheduler spacing */
+.scheduler { margin: 1.5rem 0 3rem; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .support-grid { grid-template-columns: 1fr; }
+  .two { grid-template-columns: 1fr; }
+}
