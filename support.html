@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support & Helpdesk – Pakenham Hospital PMS</title>
+
+  <!-- Site-wide styles -->
+  <link rel="stylesheet" href="css/index.css">
+  <!-- Page styles -->
+  <link rel="stylesheet" href="css/support.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-icon">🏥</div>
+        <div class="brand-text">
+          <h2>Pakenham Hospital</h2>
+          <p>Patient Management System</p>
+        </div>
+      </div>
+      <ul class="nav-menu">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="patient-enrolment.html">Patient Enrollment</a></li>
+        <li><a class="nav-link" href="appointments.html">Appointments</a></li>
+        <li><a class="nav-link" href="Tracking.html">Tracking</a></li>
+        <li><a class="nav-link active" href="support.html">Support</a></li>
+      </ul>
+      <button class="login-btn" onclick="location.href='login.html'">Login</button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Support & <span class="highlight">Helpdesk</span></h1>
+      <p class="hero-description">
+        Chat with the AI assistant, submit a support ticket, or book counselling (mental health or career).
+      </p>
+    </section>
+
+    <div class="support-grid">
+      <!-- Left: Contact / Quick actions -->
+      <aside class="card card-primary contact-card">
+        <h3>Contact Information</h3>
+        <p class="muted">Reach us quickly if you need urgent help.</p>
+        <ul class="support-contact">
+          <li>📞 Reception: <a class="reception-number" href="tel:0359408000">(03) 5940 8000</a></li>
+          <li>🚑 Emergency: <a class="emergency-number" href="tel:000">000</a></li>
+          <li>✉️ Email: support@pakenham.health</li>
+          <li>📍 1 Main Street, Pakenham VIC 3810</li>
+          <li>🕗 Mon–Fri: 8:00–18:00</li>
+        </ul>
+        <div class="quick-actions">
+          <button class="btn btn-success" id="qaMental">Book Mental Health</button>
+          <button class="btn btn-purple" id="qaCareer">Book Career Counselling</button>
+        </div>
+      </aside>
+
+      <!-- Right: Tabs + panes -->
+      <section class="card card-primary">
+        <div class="support-tabs">
+          <button class="tab-btn active" data-tab="ai">AI Assistant</button>
+          <button class="tab-btn" data-tab="ticket">Support Tickets</button>
+          <button class="tab-btn" data-tab="faq">FAQ</button>
+          <button class="tab-btn" data-tab="mine">My Tickets</button>
+        </div>
+
+        <!-- AI Assistant -->
+        <div class="tab-pane active" id="tab-ai">
+          <div class="chat-window" id="chatWindow"></div>
+          <div class="chat-input">
+            <input id="chatInput" placeholder="Ask about appointments, hours, or type 'agent' to open a ticket…" />
+            <button class="btn btn-primary" id="sendBtn">Send</button>
+          </div>
+          <p class="muted small">Quick book: <code>book mental 2025-10-12 15:00</code> or <code>book career 2025-10-13 10:00</code></p>
+        </div>
+
+        <!-- Support ticket form -->
+        <div class="tab-pane" id="tab-ticket">
+          <h3>Create Support Ticket</h3>
+          <form id="ticketForm" novalidate>
+            <div class="two">
+              <input id="tSubject" placeholder="Subject *" required />
+              <select id="tCategory" required>
+                <option value="">Category *</option>
+                <option>Technical</option>
+                <option>Medical</option>
+                <option>General</option>
+              </select>
+            </div>
+            <div class="two">
+              <select id="tPriority" required>
+                <option value="">Priority *</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+              <input id="tName" placeholder="Your name" />
+            </div>
+            <textarea id="tMessage" placeholder="Describe your issue…" required></textarea>
+            <button class="btn btn-primary">Submit Ticket</button>
+          </form>
+        </div>
+
+        <!-- FAQ -->
+        <div class="tab-pane" id="tab-faq">
+          <h3>Frequently Asked Questions</h3>
+          <div class="faq-list">
+            <div class="faq-item">
+              <h4>How do I book an appointment?</h4>
+              <p class="muted">Open the Appointments page, choose doctor, date, and time, then confirm.</p>
+            </div>
+            <div class="faq-item">
+              <h4>How do I access my medical records?</h4>
+              <p class="muted">After login, go to Dashboard → Medical Records to view/download.</p>
+            </div>
+            <div class="faq-item">
+              <h4>What should I bring to my appointment?</h4>
+              <p class="muted">Bring your Medicare card, current medications, and symptom notes.</p>
+            </div>
+            <div class="faq-item">
+              <h4>How do I update my contact information?</h4>
+              <p class="muted">Open your Profile and edit your contact details, then save.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- My Tickets -->
+        <div class="tab-pane" id="tab-mine">
+          <h3>My Support Tickets</h3>
+          <div id="myTickets" class="tickets-list"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Counselling scheduling -->
+    <section class="card card-purple scheduler">
+      <h3>Counselling Scheduling</h3>
+      <form id="apptForm" novalidate>
+        <div class="two">
+          <select id="aType" required>
+            <option value="">Select type…</option>
+            <option value="mental">Mental health counselling</option>
+            <option value="career">Career counselling</option>
+          </select>
+          <input id="aSlot" type="datetime-local" required />
+        </div>
+        <input id="aName" placeholder="Your name" required />
+        <textarea id="aNotes" placeholder="Notes (optional)"></textarea>
+        <button class="btn btn-purple">Book Appointment</button>
+      </form>
+
+      <h4 style="margin-top:1rem">Your Appointments</h4>
+      <div id="apptList" class="tickets-list"></div>
+    </section>
+  </main>
+
+  <!-- Page logic -->
+  <script src="js/support.js"></script>
+  <!-- Shared site helpers (active nav, notifications, etc.) -->
+  <script src="js/index.js"></script>
+</body>
+</html>
